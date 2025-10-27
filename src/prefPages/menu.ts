@@ -134,6 +134,18 @@ export const MenuPage = GObject.registerClass({
 				],
 				bind: "overlay-menu-animate-style",
 				sensitiveBind: "overlay-menu-enabled"
+			}),
+			DropdownRow({
+				settings,
+				title: _("Overlay overflow anchor"),
+				subtitle: _("When the menu box is taller than Quick Settings, determines where in Quick Settings the menu box will be fixed"),
+				items: [
+					{ "name": _("Top"), "value": "top" },
+					{ "name": _("Center"), "value": "center" },
+					{ "name": _("Bottom"), "value": "bottom" },
+				],
+				bind: "overlay-menu-overflow-anchor",
+				sensitiveBind: "overlay-menu-enabled"
 			})
 		])
 

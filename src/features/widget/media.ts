@@ -560,6 +560,7 @@ class MediaItem extends MessageList.Message {
 
 		this._options = options
 		this._player = player
+		this.addEventStop((this as any)._header)
 
 		// Create controls
 		if (options.progressEnabled) {
@@ -580,18 +581,18 @@ class MediaItem extends MessageList.Message {
 	// Create and update control buttons
 	_createControlButtons() {
 		const options = this._options
-		if (options.showPrevButton) this._prevButton ??= this.addMediaControl(
+		if (options.showPrevButton) this._prevButton ??= this.addEventStop(this.addMediaControl(
 			'media-skip-backward-symbolic',
 			() => this._player.previous()
-		) as unknown as St.Button
-		if (options.showPauseButton) this._pauseButton ??= this.addMediaControl(
+		) as unknown as St.Button)
+		if (options.showPauseButton) this._pauseButton ??= this.addEventStop(this.addMediaControl(
 			'',
 			() => this._player.playPause()
-		) as unknown as St.Button
-		if (options.showNextButton) this._nextButton ??= this.addMediaControl(
+		) as unknown as St.Button)
+		if (options.showNextButton) this._nextButton ??= this.addEventStop(this.addMediaControl(
 			'media-skip-forward-symbolic',
 			() => this._player.next()
-		) as unknown as St.Button
+		) as unknown as St.Button)
 		const opacity = options.contorlOpacity
 		if (this._nextButton) this._nextButton.opacity = opacity
 		if (this._prevButton) this._prevButton.opacity = opacity
@@ -732,6 +733,11 @@ class MediaItem extends MessageList.Message {
 	}
 	vfunc_touch_event(_event: Clutter.Event): boolean {
 		return Clutter.EVENT_PROPAGATE
+	}
+
+	addEventStop<T extends Clutter.Actor>(actor: T): T {
+		// actor.connect("button-press-event", ()=>Clutter.EVENT_STOP);
+		return actor;
 	}
 }
 GObject.registerClass(MediaItem)

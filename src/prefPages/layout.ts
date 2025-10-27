@@ -402,7 +402,7 @@ class ToggleOrderInfo extends OrderInfo<ToggleOrderItem> {
 			[ "KeyboardBrightnessToggle", _("Keyboard Backlight") ],
 			[ "RfkillToggle", IGNORE_XGETTEXT("Airplane Mode") ],
 			[ "RotationToggle", IGNORE_XGETTEXT("Auto Rotate") ],
-			[ "DndQuickToggle", _("Do Not Disturb") ],
+			[ "DoNotDisturbToggle", _("Do Not Disturb") ],
 			[ "UnsafeQuickToggle", _("Unsafe Mode") ],
 		])
 	}
@@ -420,7 +420,7 @@ class ToggleOrderInfo extends OrderInfo<ToggleOrderItem> {
 			[ "KeyboardBrightnessToggle", "preferences-desktop-keyboard" ],
 			[ "RfkillToggle", "airplane-mode-symbolic" ],
 			[ "RotationToggle", "object-rotate-right" ],
-			[ "DndQuickToggle", "notifications-disabled-symbolic" ],
+			[ "DoNotDisturbToggle", "notifications-disabled-symbolic" ],
 			[ "UnsafeQuickToggle", "channel-secure-symbolic" ],
 		])
 	}
@@ -461,8 +461,7 @@ class ToggleOrderInfo extends OrderInfo<ToggleOrderItem> {
 	canHide(item: ToggleOrderItem): boolean {
 		if (!item.isSystem) return true
 		return (
-			item.constructorName != "DndQuickToggle"
-			&& item.constructorName != "UnsafeQuickToggle"
+			item.constructorName != "UnsafeQuickToggle"
 		)
 	}
 	canEdit(item: ToggleOrderItem): boolean {
@@ -475,9 +474,7 @@ class ToggleOrderInfo extends OrderInfo<ToggleOrderItem> {
 		return ToggleOrderItem.create(friendlyName)
 	}
 	shouldShow(item: ToggleOrderItem): boolean {
-		if (item.constructorName == "DndQuickToggle") {
-			return this.settings.get_boolean("dnd-quick-toggle-enabled")
-		} else if (item.constructorName == "UnsafeQuickToggle") {
+		if (item.constructorName == "UnsafeQuickToggle") {
 			return this.settings.get_boolean("unsafe-quick-toggle-enabled")
 		}
 		return true
@@ -624,8 +621,7 @@ class SystemIndicatorOrderInfo extends OrderInfo<SystemIndicatorOrderItem> {
 	shouldShow(item: SystemIndicatorOrderItem): boolean {
 		if (item.gtypeName == "Gjs_toggle_dndQuickToggle_DndIndicator") {
 			return (
-				this.settings.get_boolean("dnd-quick-toggle-enabled")
-				&& this.settings.get_string("dnd-quick-toggle-indicator-position") == "system-tray"
+				this.settings.get_string("dnd-quick-toggle-indicator-position") == "system-tray"
 			)
 		}
 		return true

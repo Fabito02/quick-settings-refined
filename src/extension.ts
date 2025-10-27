@@ -9,7 +9,6 @@ import Logger from "./libs/shared/logger.js"
 import Global from "./global.js"
 import Config from "./config.js"
 import { type FeatureBase } from "./libs/shell/feature.js"
-import { DndQuickToggleFeature } from "./features/toggle/dndQuickToggle.js"
 import { UnsafeQuickToggleFeature } from "./features/toggle/unsafeQuickToggle.js"
 import { MediaWidgetFeature } from "./features/widget/media.js"
 import { WeatherWidgetFeature } from "./features/widget/weather.js"
@@ -54,7 +53,6 @@ export default class QstExtension extends Extension {
 
 		// Create features
 		this.features = [
-			new DndQuickToggleFeature(),
 			new UnsafeQuickToggleFeature(),
 			// new InputOutputFeature(),
 			new NotificationsWidgetFeature(),
