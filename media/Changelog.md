@@ -10,10 +10,13 @@
 
 {{HEADER}}
 
+- Drop gnome 48 support
+- Add support for gnome 49
+- Remove dnd quick toggle (now gnome support it natively)
+- Add 'overlay-menu-overflow-anchor' option for adjust overlay menu box overflowing
+
 ## Fix
 
-- Weather widget
-  - Fix already been disposed warning (again..)
 - VolumeMixer widget
   - Fix already been disposed warning
 

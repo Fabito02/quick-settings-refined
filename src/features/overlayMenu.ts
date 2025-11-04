@@ -12,11 +12,13 @@ export class OverlayMenu extends FeatureBase {
 	width: number
 	duration: number
 	animationStyle: string
+	overflowAnchor: string
 	override loadSettings(loader: SettingLoader): void {
 		this.enabled = loader.loadBoolean("overlay-menu-enabled")
 		this.width = loader.loadInt("overlay-menu-width")
 		this.duration = loader.loadInt("overlay-menu-animate-duration")
 		this.animationStyle = loader.loadString("overlay-menu-animate-style")
+		this.overflowAnchor = loader.loadString("overlay-menu-overflow-anchor")
 	}
 	// #endregion settings
 
@@ -35,10 +37,16 @@ export class OverlayMenu extends FeatureBase {
 		let [outerHeight] = menu.actor.get_preferred_height(-1)
 		const targetWidth = menu.actor.width - menu.box.marginLeft - menu.box.marginRight
 		const targetHeight = outerHeight - menu.box.marginTop
-		const offsetY = Math.max(
-			Math.floor((Global.QuickSettingsBox.height - targetHeight) / 2),
-			0
-		)
+		let offsetY: number
+		if (Global.QuickSettingsBox.height < targetHeight && this.overflowAnchor != "center") {
+			if (this.overflowAnchor == "top") {
+				offsetY = 0
+			} else {
+				offsetY = Global.QuickSettingsBox.height - targetHeight
+			}
+		} else {
+			offsetY = Math.floor((Global.QuickSettingsBox.height - targetHeight) / 2)
+		}
 		const isSlider = menu.sourceActor instanceof QuickSlider
 		const sourceHeight = Math.floor(menu.sourceActor.height + 0.5)
 		const sourceBaseWidth = Math.floor(menu.sourceActor.width + 0.5)
@@ -124,6 +132,7 @@ export class OverlayMenu extends FeatureBase {
 	override reload(changedKey?: string): void {
 		if (changedKey == "overlay-menu-animate-duration") return
 		if (changedKey == "overlay-menu-animate-style") return
+		if (changedKey == "overlay-menu-overflow-anchor") return
 		super.reload(changedKey)
 	}
 	override onLoad(): void {

@@ -1,5 +1,5 @@
 {
-  "name": "quik-settings-tweaks",
+  "name": "quick-settings-tweaks",
   "description": "A TypeScript GNOME Extension",
   "version": "0.0.0",
   "author": {
@@ -24,7 +24,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@girs/gjs": "^4.0.0-beta.25",
-    "@girs/gnome-shell": "^48.0.1"
+    "@girs/gjs": "^4.0.0-beta.38",
+    "@girs/gnome-shell": "^49.0.1"
   }
 }
