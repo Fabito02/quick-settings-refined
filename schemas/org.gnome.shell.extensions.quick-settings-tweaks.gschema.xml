@@ -376,6 +376,7 @@
           { 'hide': <false>, 'isSystem': <true>, 'constructorName': <'PowerProfilesToggle'> },
           { 'hide': <false>, 'isSystem': <true>, 'constructorName': <'NightLightToggle'> },
           { 'hide': <false>, 'isSystem': <true>, 'constructorName': <'DarkModeToggle'> },
+          { 'hide': <false>, 'isSystem': <true>, 'constructorName': <'DoNotDisturbToggle'> },
           { 'hide': <false>, 'isSystem': <true>, 'constructorName': <'KeyboardBrightnessToggle'> },
           { 'hide': <false>, 'isSystem': <true>, 'constructorName': <'RfkillToggle'> },
           { 'hide': <false>, 'isSystem': <true>, 'constructorName': <'RotationToggle'> },
@@ -409,20 +410,6 @@
       <default>true</default>
     </key>
     <!-- #endregion Unsafe Mode Quick Toggle -->
-
-    <!-- #region DND Quick Toggle -->
-    <key name="dnd-quick-toggle-enabled" type="b">
-      <default>true</default>
-    </key>
-    <key name="dnd-quick-toggle-indicator-position" type="s">
-      <default>"system-tray"</default>
-      <choices>
-        <choice value='system-tray'/>
-        <choice value='date-menu'/>
-        <choice value='hide'/>
-      </choices>
-    </key>
-    <!-- #endregion DND Quick Toggle -->
 
     <!-- #region Menu Animation -->
     <key name="menu-animation-enabled" type="b">
@@ -480,6 +467,14 @@
           'mixer-widget': [0, 0]
         }
       </default>
+    </key>
+    <key name="overlay-menu-overflow-anchor" type="s">
+      <choices>
+        <choice value='top'/>
+        <choice value='center'/>
+        <choice value='bottom'/>
+      </choices>
+      <default>'top'</default>
     </key>
     <!-- #endregion Overlay Menu -->
   </schema>
